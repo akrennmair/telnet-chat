@@ -91,8 +91,8 @@ func handleConnection(c net.Conn, msgchan chan<- string, addchan chan<- Client, 
 	msgchan <- fmt.Sprintf("New user %s has joined the chat room.\n", client.nickname)
 
 	// I/O
-	go client.ReadLinesInto(msgchan)
-	client.WriteLinesFrom(client.ch)
+	go client.WriteLinesFrom(client.ch)
+	client.ReadLinesInto(msgchan)
 }
 
 func handleMessages(msgchan <-chan string, addchan <-chan Client, rmchan <-chan Client) {
